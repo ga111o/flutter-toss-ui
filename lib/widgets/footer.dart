@@ -6,8 +6,8 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const BottomAppBar(
-      height: 50,
       color: Colors.white,
+      height: 50,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
