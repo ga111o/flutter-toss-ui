@@ -6,48 +6,54 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      height: 100,
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(10),
           bottomRight: Radius.circular(10),
         ),
         color: Colors.white,
       ),
-      child: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: Icon(
-          Icons.star,
-          size: 28,
-          color: Colors.grey.shade500,
-        ),
-        title: Text(
-          'toss',
-          style: TextStyle(
-            fontWeight: FontWeight.w800,
-            fontSize: 25,
-            letterSpacing: 0.5,
-            color: Colors.grey.shade500,
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        SizedBox(
+          child: Row(
+            children: [
+              const SizedBox(width: 10),
+              Icon(
+                Icons.star,
+                size: 28,
+                color: Colors.grey.shade500,
+              ),
+              Text(
+                'toss',
+                style: TextStyle(
+                  fontWeight: FontWeight.w800,
+                  fontSize: 25,
+                  letterSpacing: 0.5,
+                  color: Colors.grey.shade500,
+                ),
+              ),
+            ],
           ),
         ),
-        titleSpacing: -13.0,
-        actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Icon(
-              Icons.mark_email_read,
-              color: Colors.yellow.shade700,
-            ),
+        SizedBox(
+          child: Row(
+            children: [
+              Icon(
+                Icons.star,
+                size: 28,
+                color: Colors.grey.shade500,
+              ),
+              Icon(
+                Icons.star,
+                size: 28,
+                color: Colors.grey.shade500,
+              ),
+              const SizedBox(width: 10),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 30),
-            child: Icon(
-              Icons.add_alert,
-              color: Colors.grey.shade500,
-            ),
-          ),
-        ],
-      ),
+        )
+      ]),
     );
   }
 

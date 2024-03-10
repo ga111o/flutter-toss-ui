@@ -8,7 +8,7 @@ class Tossbank extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 95,
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 6.5),
+      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 6.5),
       decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(20))),

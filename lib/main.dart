@@ -24,11 +24,11 @@ class MyApp extends StatelessWidget {
           children: const [
             Tossbank(),
             Account(),
-            TossMoney(),
+            // TossMoney(),
             Setting(),
           ],
         ),
-        bottomNavigationBar: Footer(),
+        bottomNavigationBar: const Footer(),
       ),
     );
   }
