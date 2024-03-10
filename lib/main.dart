@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:toss/widgets/TossMoney.dart';
-import 'package:toss/widgets/account.dart';
-import 'package:toss/widgets/footer.dart';
-import 'package:toss/widgets/header.dart';
-import 'package:toss/widgets/setting.dart';
-import 'package:toss/widgets/tossbank.dart';
+import 'package:toss/view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,21 +10,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: const Color.fromRGBO(240, 240, 245, 1),
-        appBar: const Header(),
-        body: ListView(
-          children: const [
-            Tossbank(),
-            Account(),
-            // TossMoney(),
-            Setting(),
-          ],
-        ),
-        bottomNavigationBar: const Footer(),
-      ),
+      home: HomeView(),
     );
   }
 }
