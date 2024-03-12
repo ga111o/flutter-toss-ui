@@ -7,7 +7,7 @@ class Tossbank extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 95,
+      height: 80,
       margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 6.5),
       decoration: const BoxDecoration(
           color: Colors.white,
@@ -19,7 +19,7 @@ class Tossbank extends StatelessWidget {
           children: [
             const Text(
               'Toss Bank',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
             ),
             Icon(
               Icons.arrow_forward_ios,

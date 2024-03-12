@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(240, 240, 245, 1),
-      appBar: const Header(),
+      appBar: Header(),
       body: ListView(
         children: const [
           Tossbank(),

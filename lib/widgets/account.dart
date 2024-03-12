@@ -22,7 +22,7 @@ class Account extends StatelessWidget {
                 children: [
                   const Text(
                     'Account',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
+                    style: TextStyle(fontSize: 21, fontWeight: FontWeight.w900),
                   ),
                   Icon(
                     Icons.arrow_forward_ios,
@@ -32,16 +32,15 @@ class Account extends StatelessWidget {
                 ],
               ),
             ), // Title
-            AccountLine(
+            _AccountLine(
               accountName: 'TossBank Bankbook',
               amount: '123,123',
               icon: Icons.star,
               bgColor: Colors.lightBlueAccent.shade100,
               iconColor: Colors.white.withOpacity(0.5),
-              getButton: false,
               sideButton: true,
             ), //TossBank Bankbook
-            AccountLine(
+            _AccountLine(
               accountName: 'TossBank Interest',
               amount: '123,123',
               icon: Icons.star,
@@ -50,31 +49,26 @@ class Account extends StatelessWidget {
               getButton: true,
               sideButton: true,
             ), //
-            AccountLine(
+            _AccountLine(
               accountName: 'Foreign Currency',
               amount: '123,123',
               icon: Icons.star,
               bgColor: Colors.lightBlueAccent.shade100,
               iconColor: Colors.white.withOpacity(0.5),
-              getButton: false,
-              sideButton: false,
             ), //
-            AccountLine(
+            _AccountLine(
               accountName: 'wowow',
               amount: '123,123',
               icon: Icons.star,
               bgColor: Colors.lightBlueAccent.shade100,
               iconColor: Colors.white.withOpacity(0.5),
-              getButton: false,
-              sideButton: false,
             ), //TossBank Interest
-            AccountLine(
+            _AccountLine(
               accountName: 'Kakaobank',
               amount: '123,123',
               icon: Icons.star,
               bgColor: Colors.lightBlueAccent.shade100,
               iconColor: Colors.white.withOpacity(0.5),
-              getButton: false,
               sideButton: true,
             ),
           ],
@@ -84,21 +78,21 @@ class Account extends StatelessWidget {
   }
 }
 
-class AccountLine extends StatelessWidget {
+class _AccountLine extends StatelessWidget {
   final String accountName, amount;
   final IconData icon;
   final Color bgColor, iconColor;
   final bool sideButton, getButton;
 
-  const AccountLine({
+  const _AccountLine({
     super.key,
     required this.accountName,
     required this.amount,
     required this.icon,
     required this.bgColor,
     required this.iconColor,
-    required this.sideButton,
-    required this.getButton,
+    this.sideButton = false,
+    this.getButton = false,
   });
 
   @override
@@ -107,7 +101,7 @@ class AccountLine extends StatelessWidget {
       builder: (context, constraints) {
         return Container(
           margin: const EdgeInsets.symmetric(vertical: 15),
-          child: constraints.maxWidth > (getButton ? 135 : 100) + 200 + 50 + 15
+          child: constraints.maxWidth > (getButton ? 135 : 100) + 150 + 50 + 15
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -116,6 +110,7 @@ class AccountLine extends StatelessWidget {
                   ],
                 )
               : Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     buildIconAndText(),
                     if (sideButton) buildTextButton(),
@@ -130,18 +125,18 @@ class AccountLine extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: 50,
-          height: 50,
+          width: 45,
+          height: 45,
           decoration: BoxDecoration(
               color: bgColor, borderRadius: BorderRadius.circular(100)),
           child: Icon(
             icon,
-            size: 30,
+            size: 25,
             color: iconColor,
           ),
         ),
         const SizedBox(
-          width: 15,
+          width: 12,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,14 +145,14 @@ class AccountLine extends StatelessWidget {
               accountName,
               style: const TextStyle(
                   fontWeight: FontWeight.w500,
-                  fontSize: 17,
+                  fontSize: 14,
                   color: Colors.black54),
             ),
             Text(
               amount,
               style: const TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: 23,
+                  fontSize: 19,
                   color: Colors.black87),
             ),
           ],
@@ -178,7 +173,7 @@ class AccountLine extends StatelessWidget {
         child: Text(
           getButton ? 'GET NOW' : 'TOSS',
           style: const TextStyle(
-              fontWeight: FontWeight.w700, color: Colors.black54),
+              fontSize: 14, fontWeight: FontWeight.w700, color: Colors.black54),
         ),
       ),
     );
