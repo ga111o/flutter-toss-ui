@@ -1,18 +1,55 @@
 import 'package:flutter/material.dart';
 
-class Header extends StatelessWidget implements PreferredSizeWidget {
-  const Header({super.key});
+class DynamicAppBar extends StatefulWidget implements PreferredSizeWidget {
+  final ScrollController controller;
+  const DynamicAppBar({Key? key, required this.controller}) : super(key: key);
+
+  @override
+  _DynamicAppBarState createState() => _DynamicAppBarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
+
+class _DynamicAppBarState extends State<DynamicAppBar> {
+  Color _appBarColor = Colors.white;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.controller.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    widget.controller.removeListener(_onScroll);
+    super.dispose();
+  }
+
+  void _onScroll() {
+    final offset = widget.controller.offset;
+    double percent = offset / 100;
+    if (percent > 1) {
+      percent = 1;
+    } else if (percent < 0) {
+      percent = 0;
+    }
+
+    setState(() {
+      _appBarColor = Colors.white.withOpacity(percent);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 100,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(10),
           bottomRight: Radius.circular(10),
         ),
-        color: Colors.white,
+        color: _appBarColor,
       ),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         SizedBox(

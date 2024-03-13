@@ -8,17 +8,22 @@ import 'package:toss/widgets/test/stateful.dart';
 import 'package:toss/widgets/tossbank.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final ScrollController _scrollController = ScrollController();
     return Scaffold(
       backgroundColor: const Color.fromRGBO(240, 240, 245, 1),
-      appBar: Header(),
+      appBar: DynamicAppBar(controller: _scrollController),
       body: ListView(
+        controller: _scrollController,
         children: const [
           // StatefulWidgetTest(),
           Tossbank(),
+          Account(),
+          Account(),
+          Account(),
           Account(),
           // TossMoney(),
           Setting(),
