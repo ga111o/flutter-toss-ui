@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../models/foundation.dart';
 
 class Account extends StatelessWidget {
   const Account({super.key});
@@ -40,15 +43,17 @@ class Account extends StatelessWidget {
               iconColor: Colors.white.withOpacity(0.5),
               sideButton: true,
             ), //TossBank Bankbook
-            _AccountLine(
-              accountName: 'TossBank Interest',
-              amount: '123,123',
-              icon: Icons.star,
-              bgColor: Colors.lightBlueAccent.shade100,
-              iconColor: Colors.white.withOpacity(0.5),
-              getButton: true,
-              sideButton: true,
-            ), //
+            if (Provider.of<InterestModel>(context).getInterest == 1)
+              _AccountLine(
+                accountName: 'TossBank Interest',
+                amount: '123,123',
+                icon: Icons.star,
+                bgColor: Colors.lightBlueAccent.shade100,
+                iconColor: Colors.white.withOpacity(0.5),
+                getButton: true,
+                sideButton: true,
+              ),
+
             _AccountLine(
               accountName: 'Foreign Currency',
               amount: '123,123',
@@ -78,7 +83,7 @@ class Account extends StatelessWidget {
   }
 }
 
-class _AccountLine extends StatelessWidget {
+class _AccountLine extends StatefulWidget {
   final String accountName, amount;
   final IconData icon;
   final Color bgColor, iconColor;
@@ -96,24 +101,38 @@ class _AccountLine extends StatelessWidget {
   });
 
   @override
+  State<_AccountLine> createState() => _AccountLineState();
+}
+
+class _AccountLineState extends State<_AccountLine> {
+  int getInterest = 1;
+
+  void getInterestFunc() {
+    setState(() {
+      getInterest = 0;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         return Container(
           margin: const EdgeInsets.symmetric(vertical: 15),
-          child: constraints.maxWidth > (getButton ? 135 : 100) + 150 + 50 + 15
+          child: constraints.maxWidth >
+                  (widget.getButton ? 135 : 100) + 150 + 50 + 15
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     buildIconAndText(),
-                    if (sideButton) buildTextButton(),
+                    if (widget.sideButton) buildTextButton(),
                   ],
                 )
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     buildIconAndText(),
-                    if (sideButton) buildTextButton(),
+                    if (widget.sideButton) buildTextButton(),
                   ],
                 ),
         );
@@ -128,11 +147,11 @@ class _AccountLine extends StatelessWidget {
           width: 45,
           height: 45,
           decoration: BoxDecoration(
-              color: bgColor, borderRadius: BorderRadius.circular(100)),
+              color: widget.bgColor, borderRadius: BorderRadius.circular(100)),
           child: Icon(
-            icon,
+            widget.icon,
             size: 25,
-            color: iconColor,
+            color: widget.iconColor,
           ),
         ),
         const SizedBox(
@@ -142,14 +161,14 @@ class _AccountLine extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              accountName,
+              widget.accountName,
               style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 14,
                   color: Colors.black54),
             ),
             Text(
-              amount,
+              widget.amount,
               style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 19,
@@ -161,19 +180,26 @@ class _AccountLine extends StatelessWidget {
     );
   }
 
-  Container buildTextButton() {
-    return Container(
-      height: 50,
-      width: getButton ? 85 : 50,
-      decoration: BoxDecoration(
-        color: Colors.grey.shade100,
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-      ),
-      child: Center(
-        child: Text(
-          getButton ? 'GET NOW' : 'TOSS',
-          style: const TextStyle(
-              fontSize: 14, fontWeight: FontWeight.w700, color: Colors.black54),
+  InkWell buildTextButton() {
+    return InkWell(
+      onTap: widget.getButton
+          ? Provider.of<InterestModel>(context, listen: false).getInterestFunc
+          : null,
+      child: Container(
+        height: 50,
+        width: widget.getButton ? 85 : 50,
+        decoration: BoxDecoration(
+          color: Colors.grey.shade100,
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+        ),
+        child: Center(
+          child: Text(
+            widget.getButton ? 'GET NOW' : 'TOSS',
+            style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
+                color: Colors.black54),
+          ),
         ),
       ),
     );
