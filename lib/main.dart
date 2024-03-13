@@ -8,7 +8,7 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (context) => InterestModel(),
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }

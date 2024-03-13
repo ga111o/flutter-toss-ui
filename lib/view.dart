@@ -17,7 +17,7 @@ class HomeView extends StatelessWidget {
       appBar: Header(),
       body: ListView(
         children: const [
-          StatefulWidgetTest(),
+          // StatefulWidgetTest(),
           Tossbank(),
           Account(),
           // TossMoney(),
