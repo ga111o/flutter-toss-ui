@@ -9,7 +9,7 @@ import 'package:toss/widgets/test/stateful.dart';
 import 'package:toss/widgets/tossbank.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({super.key});
 
   @override
   _HomeViewState createState() => _HomeViewState();
