@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:toss/widgets/TossMoney.dart';
-import 'package:toss/widgets/account.dart';
 import 'package:toss/widgets/footer.dart';
 import 'package:toss/widgets/header.dart';
 import 'package:toss/widgets/setting.dart';
-import 'package:toss/widgets/test/stateful.dart';
-import 'package:toss/widgets/tossbank.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class TestScreen extends StatelessWidget {
+  const TestScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +15,9 @@ class HomeView extends StatelessWidget {
       body: ListView(
         controller: scrollController,
         children: const [
-          // StatefulWidgetTest(),
-          Tossbank(),
-          Account(),
-          Account(),
-          Account(),
-          Account(),
-          // TossMoney(),
+          Setting(),
+          Setting(),
+          Setting(),
           Setting(),
         ],
       ),
