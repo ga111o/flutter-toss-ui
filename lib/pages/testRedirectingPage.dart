@@ -21,7 +21,7 @@ class TestScreen extends StatelessWidget {
           Setting(),
         ],
       ),
-      bottomNavigationBar: const Footer(),
+      // bottomNavigationBar: Footer(),
     );
   }
 }

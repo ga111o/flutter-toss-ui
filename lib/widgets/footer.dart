@@ -1,62 +1,52 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:toss/pages/testScreen.dart';
+import 'package:toss/pages/testRedirectingPage.dart';
 
 class Footer extends StatelessWidget {
-  const Footer({super.key});
+  final int currentIndex;
+  final Function(int) onTabTapped;
+
+  const Footer({
+    super.key,
+    required this.currentIndex,
+    required this.onTabTapped,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(10),
-          topRight: Radius.circular(10),
+    return BottomNavigationBar(
+      onTap: onTabTapped,
+      currentIndex: currentIndex,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.home,
+            color: Colors.black87,
+          ),
+          label: 'Home',
         ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context,
-                  CupertinoPageRoute(builder: (context) => const TestScreen()));
-            },
-            child: const Icon(Icons.home),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.money_off_rounded,
+            color: Colors.black87,
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context,
-                  CupertinoPageRoute(builder: (context) => const TestScreen()));
-            },
-            child: const Icon(Icons.money_off_rounded, color: Colors.black38),
+          label: 'Money',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.payment_rounded,
+            color: Colors.black87,
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context,
-                  CupertinoPageRoute(builder: (context) => const TestScreen()));
-            },
-            child:
-                const Icon(Icons.shopping_bag_rounded, color: Colors.black38),
+          label: 'Pay',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.menu_rounded,
+            color: Colors.black87,
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context,
-                  CupertinoPageRoute(builder: (context) => const TestScreen()));
-            },
-            child: const Icon(Icons.filter_list_alt, color: Colors.black38),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context,
-                  CupertinoPageRoute(builder: (context) => TestScreen()));
-            },
-            child: const Icon(Icons.menu_rounded, color: Colors.black38),
-          ),
-        ],
-      ),
+          label: 'Menu',
+        ),
+      ],
     );
   }
 }
