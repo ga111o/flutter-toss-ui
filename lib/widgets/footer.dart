@@ -17,32 +17,34 @@ class Footer extends StatelessWidget {
     return BottomNavigationBar(
       onTap: onTabTapped,
       currentIndex: currentIndex,
+      selectedItemColor: Colors.black87,
+      unselectedItemColor: Colors.black26,
+      selectedLabelStyle: const TextStyle(
+          fontSize: 14.0, fontWeight: FontWeight.bold, color: Colors.black26),
+      unselectedLabelStyle: const TextStyle(
+          fontSize: 13.0, fontWeight: FontWeight.normal, color: Colors.black87),
       items: const [
         BottomNavigationBarItem(
           icon: Icon(
             Icons.home,
-            color: Colors.black87,
           ),
           label: 'Home',
         ),
         BottomNavigationBarItem(
           icon: Icon(
             Icons.money_off_rounded,
-            color: Colors.black87,
           ),
           label: 'Money',
         ),
         BottomNavigationBarItem(
           icon: Icon(
             Icons.payment_rounded,
-            color: Colors.black87,
           ),
           label: 'Pay',
         ),
         BottomNavigationBarItem(
           icon: Icon(
             Icons.menu_rounded,
-            color: Colors.black87,
           ),
           label: 'Menu',
         ),

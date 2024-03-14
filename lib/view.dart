@@ -9,7 +9,7 @@ import 'package:toss/widgets/test/stateful.dart';
 import 'package:toss/widgets/tossbank.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+  const HomeView({Key? key}) : super(key: key);
 
   @override
   _HomeViewState createState() => _HomeViewState();
@@ -17,22 +17,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int _currentIndex = 0;
-  final ScrollController scrollController = ScrollController();
-  final List<Widget> _children = [
-    ListView(
-      children: const [
-        Tossbank(),
-        Account(),
-        Account(),
-        Account(),
-        Account(),
-        Setting(),
-      ],
-    ),
-    const Setting(),
-    const Setting(),
-    const Setting(),
-  ];
+  final ScrollController _scrollController = ScrollController();
 
   void onTabTapped(int index) {
     setState(() {
@@ -42,9 +27,26 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _children = [
+      ListView(
+        controller: _scrollController,
+        children: const [
+          Tossbank(),
+          Account(),
+          Account(),
+          Account(),
+          Account(),
+          Setting(),
+        ],
+      ),
+      const Setting(),
+      const Setting(),
+      const Setting(),
+    ];
+
     return Scaffold(
       backgroundColor: const Color.fromRGBO(240, 240, 245, 1),
-      appBar: DynamicAppBar(controller: scrollController),
+      appBar: DynamicAppBar(controller: _scrollController),
       body: IndexedStack(
         index: _currentIndex,
         children: _children,
