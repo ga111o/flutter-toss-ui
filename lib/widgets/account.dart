@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../models/foundation.dart';
 
 class Account extends StatelessWidget {
