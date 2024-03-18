@@ -105,14 +105,6 @@ class _AccountLine extends StatefulWidget {
 }
 
 class _AccountLineState extends State<_AccountLine> {
-  int getInterest = 1;
-
-  void getInterestFunc() {
-    setState(() {
-      getInterest = 0;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
